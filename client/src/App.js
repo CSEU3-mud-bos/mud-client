@@ -7,7 +7,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ width: "1000px" }}>
       <Route component={Start} exact path="/" />
       <Route component={CreatePlayer} path="/create" />
       <Route component={Game} path="/game" />
