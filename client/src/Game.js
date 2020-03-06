@@ -8,6 +8,7 @@ function Game() {
   const [currentRoom, setCurrentRoom] = useState([]);
   const [currentRoomId, setCurrentRoomId] = useState(null);
   const [player, setPlayer] = useState(localStorage.getItem("player"));
+  const [error, setError] = useState("");
 
   const history = useHistory();
 
@@ -59,12 +60,12 @@ function Game() {
         <h2 style={{ justifySelf: "center", fontSize: "40px" }}>
           {`${player} has entered `} {currentRoom.title}
         </h2>
-        <h3 style={{ justifySelf: "center", fontSize: "25px", color: "red" }}>
+        <h3 style={{ justifySelf: "center", fontSize: "25px", color: "blue" }}>
           {currentRoom.description}
         </h3>
+        <h2 style={{ color: "red" }}>{error}</h2>
       </div>
       <div style={{ display: "grid" }}>
-        {console.log(rooms)}
         {rooms?.map((item, index) => {
           return <Room item={item} index={index} currentRoom={currentRoom} />;
         })}
@@ -81,8 +82,11 @@ function Game() {
         <button
           onClick={() => {
             if (currentRoom.n_to !== null) {
+              setError("");
               localStorage.setItem("currentRoom", currentRoom.n_to);
               setCurrentRoomId(currentRoom.n_to);
+            } else {
+              setError("OOOOOPS! Cant go North");
             }
           }}
           style={{
@@ -97,8 +101,11 @@ function Game() {
         <button
           onClick={() => {
             if (currentRoom.s_to !== null) {
+              setError("");
               localStorage.setItem("currentRoom", currentRoom.s_to);
               setCurrentRoomId(currentRoom.s_to);
+            } else {
+              setError("OOOOOPS! Cant go South");
             }
           }}
           style={{
@@ -112,11 +119,12 @@ function Game() {
         </button>
         <button
           onClick={() => {
-            console.log("hit");
-            console.log(currentRoom);
             if (currentRoom.e_to !== null) {
+              setError("");
               localStorage.setItem("currentRoom", currentRoom.e_to);
               setCurrentRoomId(currentRoom.e_to);
+            } else {
+              setError("OOOOOPS! Cant go East");
             }
           }}
           style={{
@@ -131,8 +139,11 @@ function Game() {
         <button
           onClick={() => {
             if (currentRoom.w_to !== null) {
+              setError("");
               localStorage.setItem("currentRoom", currentRoom.w_to);
               setCurrentRoomId(currentRoom.w_to);
+            } else {
+              setError("OOOOOPS! Cant go West");
             }
           }}
           style={{
