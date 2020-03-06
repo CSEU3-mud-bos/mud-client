@@ -7,6 +7,7 @@ function Game() {
   const [rooms, setRooms] = useState([]);
   const [currentRoom, setCurrentRoom] = useState([]);
   const [currentRoomId, setCurrentRoomId] = useState(null);
+  const [player, setPlayer] = useState(localStorage.getItem("player"));
 
   const history = useHistory();
 
@@ -56,7 +57,7 @@ function Game() {
       </p>
       <div style={{ display: "grid" }}>
         <h2 style={{ justifySelf: "center", fontSize: "40px" }}>
-          {currentRoom.title}
+          {`${player} has entered `} {currentRoom.title}
         </h2>
         <h3 style={{ justifySelf: "center", fontSize: "25px", color: "red" }}>
           {currentRoom.description}
